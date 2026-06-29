@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SoHa Homepage 26'</title>
+
+        <style>
+            body {
+                display: block;
+                justify-content: center;
+                width: 100%;
+                height: 100vh;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #banner {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .no-margin {
+                margin: 0;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 30px;
+                color: rgb(1, 1, 62);
+            }
+
+            .sub-title {
+                font-size: 20px;
+            }
+
+            .header {
+                font-size: 15px;
+            }
+
+            .larger-text {
+                font-size: 15px;
+            }
+
+            .text {
+                font-size: 12px;
+            }
+
+            .small-margin {
+                margin: 10px;
+            }
+
+            .top-margin-large {
+                margin-top: 30px;
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+
+            #container {
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            #view-seating-chart {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: rgb(1, 1, 62);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <img id="banner" src="banner2.png">
+
+        <h1 class="center title top-margin-large">South Haven 2026</h1>
+
+        <p class="center sub-title no-margin">
+            With <span class="username"></span>
+        </p>
+
+        <p class="center sub-title top-margin-large">
+            Hello <span class="username"></span>! You can view all the details about the 2026 trip to South Haven this year here.
+        </p>
+
+        <div id="container">
+            <button id="view-seating-chart" class="option">View Car Seating</button>
+        </div>
+
+        <script>
+            function getNameFromURL() {
+                const params = new URLSearchParams(window.location.search);
+                const name = params.get("name");
+                return name || "Unknown User";
+            }
+
+            window.onload = () => {
+                const name = getNameFromURL();
+
+                document.querySelectorAll(".username").forEach(el => {
+                    el.textContent = name;
+                });
+
+                const vscb = document.getElementById("view-seating-chart");
+
+                vscb.addEventListener('click', () => {
+                    window.location.href = 'car_seating.html?name=' + encodeURIComponent(name);
+                });
+            };
+        </script>
+    </body>
+</html>
